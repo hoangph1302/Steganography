@@ -1,27 +1,24 @@
 
-dic = {}
-# in ACSII table english alphabet 'a' = 97 .... 'z' = 122
-for i in range(97,123):
-    dic[chr(i)] = '{0:05b}'.format(i-97) 
-    # example 
-    # dic['a'] = '00000'
-    # dic['b'] = '00001'
-    # .........
+def ChangeLetterToBinnary(letter):
+    binary=''
+    binary = '{0:08b}'.format(ord(letter)-1040) 
+    return binary
+
 
 # transform string text to binary
 def ChangeToBinary(text):
     binary = ''
     for i in range(len(text)):
-        binary = binary + dic[text[i]]
+        binary = binary + ChangeLetterToBinnary(text[i])
     return binary
 
 # transform binary to string text
 def ChangetoString(text):
     result = ''
-    for i in range(len(text)//5):
-        a = text[i*5:(i+1)*5] # every symbol using a 5bit-encode
+    for i in range(len(text)//8):
+        a = text[i*8:(i+1)*8] # every symbol using a 8bit-encode
         b = int(a,2)
-        result += chr(b+97)
+        result += chr(b+1040)
     return result
 
 
