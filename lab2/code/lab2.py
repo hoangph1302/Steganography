@@ -18,7 +18,7 @@ def ConvertBinarryToString(binary):
 
 def ConvertDecimalToBinary(number):
     binary=[]
-    binray= "{0:08b}".format(number)
+    binray= "{0:016b}".format(number)
     return binray
 
 def ConvertBinaryToDecimal(binary):
@@ -34,7 +34,7 @@ def ConvertDataToList(data,lenght):
 
 def ModifyData(data,message):
     lenghtMessageBin=ConvertDecimalToBinary(len(message))
-    for i in range(0,8):
+    for i in range(0,16):
         if(lenghtMessageBin[i]=='0'):
           if(data[i]%2==1):
             data[i]=data[i]-1
@@ -45,24 +45,24 @@ def ModifyData(data,message):
     messageBinary=ConvertStringToBinary(message)
     for i in range(0,len(messageBinary)):
         if(messageBinary[i]=='0'):
-            if(data[i+8]%2==1):
-                data[i+8]=data[i+8]-1
+            if(data[i+16]%2==1):
+                data[i+16]=data[i+16]-1
         else:
-            if(data[i+8]%2==0):
-                data[i+8]=data[i+8]+1
+            if(data[i+16]%2==0):
+                data[i+16]=data[i+16]+1
     return data
 
 
 def ReadData(data):
     lengtMessageBinary=''
-    for i in range(0,8):
+    for i in range(0,16):
         if(data[i]%2==0):
             lengtMessageBinary+='0'
         else:
             lengtMessageBinary+='1'
     lenghtMessage=ConvertBinaryToDecimal(lengtMessageBinary)
     message=''
-    for i in range(8,8+lenghtMessage*8):
+    for i in range(16,16+lenghtMessage*8):
         if(data[i]%2==0):
             message+='0'
         else:
