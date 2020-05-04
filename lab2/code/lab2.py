@@ -111,19 +111,18 @@ def PSNR(image1,image2):
     PSNR=10*math.log((255*255/MSE),10)
     return PSNR
 
-image1='input.bmp'
-image2='output.bmp'
+
 
  ##---------------------------------------main programme-----------------------------------------------------------------
 print('-------------------------Steganography LSB--------------------------------------')
-print ('1.steganography'+'\n'+'2.Find scret text from image \n'+'3.PSNR\n')
+print ('1.steganography'+'\n'+'2.Find secret text from image \n'+'3.PSNR\n')
 option=int(input())
 if(option==1):
-     #image=input('Enter file image!\n')
+     image=input('Enter file image!\n')
      message=input('Enter secret text!\n')
-     Encryto(image1,message)
+     Encryto(image,message)
 elif( option==2):
-     Decrypto(image2)
+     Decrypto(input('Enter file image!\n'))
      print ('Please Open file SecretText!')
 elif(option==3):
     print ('PSNR:')
