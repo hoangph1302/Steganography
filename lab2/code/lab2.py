@@ -110,12 +110,28 @@ def PSNR(image1,image2):
     MSE=sum/(width*height)
     PSNR=10*math.log((255*255/MSE),10)
     return PSNR
+def Attack(fileImage):
+    image=Image.open(fileImage,'r')
+    newImage=image.copy()
+    width,height=newImage.size
+    data=ConvertDataToList(list(newImage.getdata()),height*width)
+    for i in range(0,len(data)):
+        if(data[i]%2==0):
+            data[i]=0
+        else: data[i]=255
 
+    dataImage=[]
+    for j in range(0,height*width*3,3):
+        dataImage.append(tuple(data[j:j+3]))
+    newImage.putdata(dataImage)
+    newImage.save('attack.bmp')
+    image.close()
+    newImage.close()
 
 
  ##---------------------------------------main programme-----------------------------------------------------------------
 print('-------------------------Steganography LSB--------------------------------------')
-print ('1.steganography'+'\n'+'2.Find secret text from image \n'+'3.PSNR\n')
+print ('1.steganography'+'\n'+'2.Find secret text from image \n'+'3.PSNR\n'+'4.Attack')
 option=int(input())
 if(option==1):
      image=input('Enter file image!\n')
@@ -127,6 +143,5 @@ elif( option==2):
 elif(option==3):
     print ('PSNR:')
     print (PSNR('input.bmp','output.bmp'))
-
-
-
+elif(option==4):
+    Attack(input('Enter file image!\n'))
