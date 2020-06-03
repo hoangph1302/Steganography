@@ -75,6 +75,7 @@ def Encryto(fileImage,message):
     image=Image.open(fileImage,'r')
     newImage=image.copy()
     width,height=newImage.size
+    print(list(newImage.getdata()))
     data=ConvertDataToList(list(newImage.getdata()),height*width)
 
     data=ModifyData(data,message)
